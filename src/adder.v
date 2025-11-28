@@ -3,19 +3,22 @@ module adder ();
   reg clk;
   reg a;
   reg b;
-  output c;
+  wire sum;
+  wire carry;
 
   initial begin
     clk = 0;
     forever #5 clk = ~clk;
   end
 
-  assign c = a ^ b;
+  assign sum = a ^ b;
+  assign carry = a & b;
 
   initial begin
-    a = 1;
-    #10
-    b = 1;
+    a = 0; b = 0;
+    #10 a = 1;
+    #10 b = 1;
+    #10 a = 0;
   end
 
   initial begin
