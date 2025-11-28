@@ -18,7 +18,7 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y iverilog
 
     - name: Build the project
-      run: iverilog src/adder.v
+      run: iverilog -o adder src/adder.v
 
     - name: Run check
-      run: ./adder
+      run: vvp adder
