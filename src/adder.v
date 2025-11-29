@@ -3,6 +3,7 @@ module adder ();
   reg clk;
   reg a;
   reg b;
+  reg cr;
   wire sum;
   wire carry;
 
