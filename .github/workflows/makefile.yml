@@ -16,9 +16,12 @@ jobs:
 
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y iverilog
+      
+    - name: Create build directory
+      run: mkdir -p build
 
     - name: Build the project
-      run: make
+      run: iverilog -o adder src/adder.v
 
     - name: Run check
-      run: make run
+      run: vvp adder
