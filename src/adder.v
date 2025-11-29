@@ -1,32 +1,12 @@
-module adder ();
+module adder (
+  input wire a, 
+  input wire b,
+  input wire cin,
+  output wire sum,
+  output wire carry
+);
 
-  reg clk;
-  reg a;
-  reg b;
-  reg cr;
-  wire sum;
-  wire carry;
-
-  initial begin
-    clk = 0;
-    forever #5 clk = ~clk;
-  end
-
-  assign sum = a ^ b;
-  assign carry = a & b;
-
-  initial begin
-    a = 0; b = 0;
-    #10 a = 1;
-    #10 b = 1;
-    #10 a = 0;
-  end
-
-  initial begin
-    $dumpfile("build/adder.vcd");
-    $dumpvars(0, adder);
-    #200 $finish;
-  end
-
+  assign sum = a ^ b ^ cin;
+  assign carry = (a & b) | (cin & a) | (cin & b);
 
 endmodule

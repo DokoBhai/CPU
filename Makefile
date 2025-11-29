@@ -1,13 +1,13 @@
-.PHONY: build clean
+.PHONY: build clean run wave
 
 build:
-	iverilog -o build/adder src/adder.v
+	iverilog -o build/adder_tb tb/adder_tb.v src/adder.v
 
 run: build
-	vvp build/adder 
+	vvp build/adder_tb
 
-wave: 
+wave:
 	gtkwave build/adder.vcd
 
-clean: 
-	rm build/*
+clean:
+	rm -f build/*
