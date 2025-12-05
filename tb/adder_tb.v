@@ -1,12 +1,12 @@
 module adder_tb();
 
-    reg [3:0] a;
-    reg [3:0] b;
+    reg [7:0] a;
+    reg [7:0] b;
     reg cin;
-    wire [3:0] sum;
+    wire [7:0] sum;
     wire cout;
 
-    adder4 dut (
+    adder8 dut (
         .a(a),
         .b(b),
         .cin(cin),
@@ -15,13 +15,13 @@ module adder_tb();
     );
 
     initial begin
-        $dumpfile("build/adder4.vcd");
+        $dumpfile("build/adder8.vcd");
         $dumpvars(0, adder_tb);
 
-        a = 4'b0001; b = 4'b0010; cin = 0; #10;
-        a = 4'b1100; b = 4'b0011; cin = 0; #10;
-        a = 4'b1111; b = 4'b0001; cin = 0; #10;
-        a = 4'b1010; b = 4'b0101; cin = 1; #10;
+        a = 8'b00000001; b = 8'b00000010; cin = 0; #10;
+        a = 8'b11001100; b = 8'b00110011; cin = 0; #10;
+        a = 8'b11111111; b = 8'b00000001; cin = 0; #10;
+        a = 8'b10101010; b = 8'b01010101; cin = 1; #10;
 
         #20 $finish;
     end
