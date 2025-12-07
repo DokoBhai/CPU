@@ -1,12 +1,12 @@
 module subtractor_tb ();
 
-reg a;
-reg b;
+reg [3:0] a;
+reg [3:0] b;
 reg bin;
-wire diff;
+wire [3:0] diff;
 wire bout;
 
-subtractor dut(
+subtractor4 dut(
   .a(a),
   .b(b),
   .bin(bin),
@@ -18,18 +18,8 @@ initial begin
   $dumpfile("build/subtractor.vcd");
   $dumpvars(0, subtractor_tb);
 
-  a = 1;
-  b = 1;
-  bin = 0;
-  #10
-  a = 0;
-  b = 0;
-  #10
-  a = 1;
-  b = 0;
-  #10
-  a = 0;
-  b = 1;
+  a = 4'b0001; b = 4'b0001; bin = 0; #10;
+  a = 4'b0010; b = 4'b0001; bin = 0; #10;
 
   #10 $finish;
 end

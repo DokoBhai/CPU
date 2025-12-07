@@ -1,7 +1,7 @@
 .PHONY: build clean run wave
 
 build:
-	iverilog -o build/adder_tb tb/adder_tb.v src/adder.v src/adder8.v src/subtractor.v tb/subtractor_tb.v
+	iverilog -o build/adder_tb tb/adder_tb.v src/adder.v src/adder8.v src/subtractor.v src/subtractor4.v tb/subtractor_tb.v
 
 run: build
 	vvp build/adder_tb build/subtractor_tb
