@@ -6,9 +6,7 @@ module subtractor4 (
   output wire bout
 );
 
-  wire bc0;
-  wire bc1;
-  wire bc2;
+  wire bc0, bc1, bc2;
 
   subtractor fa0(a[0], b[0], bin, diff[0], bc0);
   subtractor fa1(a[1], b[1], bc0, diff[1], bc1 );
