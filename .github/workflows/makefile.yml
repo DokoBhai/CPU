@@ -21,7 +21,7 @@ jobs:
       run: mkdir -p build
 
     - name: Build the project
-      run: iverilog -o adder src/adder.v
+      run: make build
 
     - name: Run check
-      run: vvp adder
+      run: make run
