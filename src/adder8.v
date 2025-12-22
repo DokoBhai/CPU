@@ -1,3 +1,8 @@
+/*
+Using the adder.v module.
+The logic here is to make a Ripple Carry adder.
+*/
+
 module adder8(
     input wire [7:0] a,
     input wire [7:0] b,
