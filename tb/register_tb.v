@@ -27,6 +27,12 @@ initial begin
   en  = 0;
   d   = 8'b00000000;
 
+  en = 1;
+  clk = 1;
+  #5
+  en = 0;
+  clk = 0;
+
   // Hold reset for 1 cycle
   #10;
   rst = 0;
