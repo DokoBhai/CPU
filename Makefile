@@ -1,13 +1,17 @@
-.PHONY: build clean run wave
+.PHONY: all build run wave clean
 
+# Default target
+all: build run
+
+# Build and run ALU testbench
 build:
-	iverilog -o build/adder_tb tb/adder_tb.v src/adder.v src/adder8.v src/subtractor.v src/subtractor8.v tb/subtractor_tb.v src/register8.v tb/register_tb.v
+	iverilog -o build/ALU_tb tb/*.v src/*.v
 
 run: build
-	vvp build/adder_tb build/subtractor_tb build/register_tb
+	vvp build/ALU_tb
 
 wave:
-	gtkwave build/adder8.vcd build/subtractor_tb.vcd build/register_tb.vcd
+	gtkwave build/ALU_tb.vcd
 
 clean:
-	rm -f build/*
+	rm -rf build/*
