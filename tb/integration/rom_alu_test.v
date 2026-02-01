@@ -58,7 +58,6 @@ module rom_alu_test;
         
         pc = 5; #50;
         
-        #50;  // Extra time at the end
         $display("\n=== Test Complete ===");
         $finish;
     end
