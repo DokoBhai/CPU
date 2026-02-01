@@ -12,7 +12,7 @@ module ALU (
     wire [7:0] add_result;
     wire [7:0] sub_result;
     wire add_carry, sub_borrow;
-    wire [7:0] reg_output;
+    reg [7:0] alu_output;
     
     adder8 adder_inst (
         .a(A),
@@ -30,24 +30,23 @@ module ALU (
         .bout(sub_borrow)
     );
     
-    register8 result_reg (
-        .clk(clk),
-        .rst(rst),
-        .en(1'b1),
-        .d(result),
-        .q(reg_output)
-    );
-    
     always @(*) begin
         case (opcode)
-            3'b000: result = add_result;      // ADD
-            3'b001: result = sub_result;      // SUB
-            3'b010: result = A & B;           // AND
-            3'b011: result = A | B;           // OR
-            3'b100: result = A ^ B;           // XOR
-            3'b101: result = ~A;              // NOT
-            default: result = 8'b0;
+            3'b000: alu_output = add_result;      // ADD
+            3'b001: alu_output = sub_result;      // SUB
+            3'b010: alu_output = A & B;           // AND
+            3'b011: alu_output = A | B;           // OR
+            3'b100: alu_output = A ^ B;           // XOR
+            3'b101: alu_output = ~A;              // NOT
+            default: alu_output = 8'b0;
         endcase
+    end
+    
+    always @(posedge clk) begin
+        if (rst)
+            result <= 8'b0;
+        else
+            result <= alu_output;
     end
     
     assign carry_out = (opcode == 3'b000) ? add_carry : 1'b0;
